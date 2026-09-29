@@ -12,41 +12,28 @@ class AuthController extends Notifier<AuthStatus> {
   @override
   AuthStatus build() {
     Future.microtask(checkSession);
-
     return AuthStatus.loading;
   }
 
   Future<void> checkSession() async {
-    await Future<void>.delayed(
-      const Duration(seconds: 2),
-    );
-
-    state = AuthStatus.unauthenticated;
+     final hasSession = await ref.read(authRepositoryProvider).hasSession();
+     state = hasSession ? AuthStatus.authenticated : AuthStatus.unauthenticated;
   }
-
-  Future<bool> login({
+  
+  Future<void> login({
     required String email,
     required String password,
   }) async {
-    await Future<void>.delayed(
-      const Duration(seconds: 1),
-    );
+      
+    await ref.read(authRepositoryProvider).login(email: email, password: password);
+    state = AuthStatus.authenticated;
 
-    final authRepository = ref.read(authRepositoryProvider);
-    final isValid = await authRepository.login(email: email, password: password);
-
-    if (isValid) {
-      state = AuthStatus.authenticated;
-    }
-
-    return isValid;
-  }
+  } 
 
   Future<void> logout() async {
     final authRepository = ref.read(authRepositoryProvider);
     await authRepository.logout();
     state = AuthStatus.unauthenticated;
   }
-  
-  
+
 }

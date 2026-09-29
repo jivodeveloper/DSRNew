@@ -7,7 +7,7 @@ class AuthInterceptors extends Interceptor {
     options.headers['Authorization'] = 'Bearer YOUR_ACCESS_TOKEN';
     super.onRequest(options, handler);
   }
-
+  
   @override
   void onResponse(Response response, ResponseInterceptorHandler handler) {
     // Handle the response if needed
@@ -15,7 +15,7 @@ class AuthInterceptors extends Interceptor {
   }
   
   @override
-  void onError(DioError err, ErrorInterceptorHandler handler) {
+  void onError(DioException err, ErrorInterceptorHandler handler) {
     // Handle errors, e.g., token expiration
     super.onError(err, handler);
   }
