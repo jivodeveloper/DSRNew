@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Shops extends StatefulWidget {
-
+  
   const Shops({super.key});
 
   @override

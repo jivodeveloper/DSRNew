@@ -1,40 +1,28 @@
+import 'package:jivodsr/features/auth/data/datasources/auth_remote_datasource.dart';
+import 'package:jivodsr/features/auth/domain/entities/user.dart';
 import 'package:jivodsr/features/auth/domain/repositories/auth_repository.dart';
 
 class AuthRepositoryImpl implements AuthRepository{
   
-  bool _isLoggedIn = false;
+  AuthRepositoryImpl(this._remote); 
+  User? _currentUser;
+  final AuthRemoteDatasource _remote;
 
   @override
-  Future<bool> hasSession() async {
-    await Future<void>.delayed(
-      const Duration(seconds: 2),
-    );
-    return _isLoggedIn;
-  }
-  
-  @override
-  Future<bool> login({required String email, required String password}) async {
-    await Future<void>.delayed(
-      const Duration(seconds: 1),
-    );
+  Future<bool> hasSession() async => _currentUser !=null;
 
-    final _isValid = email.trim().isNotEmpty && password.isNotEmpty;
-
-    if (_isValid) {
-      _isLoggedIn = true;
-      return true;
-    } else {
-      _isLoggedIn = false;
-      return false;
-    }
-  }
-  
   @override
-  Future<void> logout() async {
-    await Future<void>.delayed(
-      const Duration(seconds: 1),
-    );
-    _isLoggedIn = false;
+  Future<User> login({required String email, required String password}) async {
+
+    final dto = await _remote.login(username: email, password: password);
+    final user = dto.toEntity();
+    _currentUser = user;
+
+    return user;
+
   }
-  
+
+  @override
+  Future<void> logout() async => _currentUser =null;
+        
 }

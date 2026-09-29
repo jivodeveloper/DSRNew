@@ -9,7 +9,7 @@ import 'package:jivodsr/features/auth/presentation/providers/auth_providers.dart
 import 'package:jivodsr/features/auth/presentation/screens/login_screen.dart';
 import 'package:jivodsr/features/auth/presentation/screens/splash_screen.dart';
 import 'package:jivodsr/features/dashboard/presentation/screens/dashboard.dart';
-import 'package:jivodsr/features/shops/presentation/screens/Shops.dart';
+import 'package:jivodsr/features/shops/presentation/screens/shops.dart';
 
 final routerProvider = Provider<GoRouter>((ref) {
 

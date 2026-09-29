@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:jivodsr/core/error/app_exception.dart';
 import 'package:jivodsr/features/auth/presentation/providers/auth_providers.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {
@@ -31,23 +32,21 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
       return;
     }
 
-    setState(() {
-      _isLoading = true;
-    });
-
-    final isSuccess = await ref.read(authControllerProvider.notifier).login(email: _emailController.text.trim(), password: _passwordController.text.trim());
+    setState(() => _isLoading = true);
     
-    if(!mounted) return;
-
-    if(!isSuccess){
+    try {
+      await ref.read(authControllerProvider.notifier).login(
+            email: _emailController.text.trim(),
+            password: _passwordController.text,
+          );
+    } on AppException catch (e) {
+      if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Invalid email or password')),
+        SnackBar(content: Text(e.message)),
       );
+    } finally {
+      if (mounted) setState(() => _isLoading = false);
     }
-
-    setState(() {
-      _isLoading = false;
-    });
 
   }
 
