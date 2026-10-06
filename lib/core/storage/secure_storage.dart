@@ -12,29 +12,19 @@ class SecureStorageService {
     required String accessToken,
     String? refreshToken,
   }) async {
-    await _storage.write(
-      key: _accessTokenKey,
-      value: accessToken,
-    );
+    await _storage.write(key: _accessTokenKey, value: accessToken);
 
     if (refreshToken != null) {
-      await _storage.write(
-        key: _refreshTokenKey,
-        value: refreshToken,
-      );
+      await _storage.write(key: _refreshTokenKey, value: refreshToken);
     }
   }
 
   Future<String?> getAccessToken() {
-    return _storage.read(
-      key: _accessTokenKey,
-    );
+    return _storage.read(key: _accessTokenKey);
   }
 
   Future<String?> getRefreshToken() {
-    return _storage.read(
-      key: _refreshTokenKey,
-    );
+    return _storage.read(key: _refreshTokenKey);
   }
 
   Future<bool> hasAccessToken() async {

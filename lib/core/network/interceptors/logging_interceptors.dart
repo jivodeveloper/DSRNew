@@ -3,9 +3,9 @@ import 'package:flutter/foundation.dart';
 
 class LoggingInterceptors extends LogInterceptor {
   LoggingInterceptors()
-      : super(
-          requestBody: true,
-          responseBody: true,
-          logPrint: (object) => debugPrint(object.toString()),
-        );
+    : super(
+        requestBody: true,
+        responseBody: true,
+        logPrint: (object) => debugPrint(object.toString()),
+      );
 }

@@ -4,25 +4,16 @@ import 'package:go_router/go_router.dart';
 import 'package:jivodsr/features/auth/presentation/providers/auth_providers.dart';
 
 class MainShell extends ConsumerWidget {
-
-  const MainShell({
-    required this.navigationShell,
-    super.key,
-  });
+  const MainShell({required this.navigationShell, super.key});
 
   final StatefulNavigationShell navigationShell;
 
-  static const _titles = [
-    'Dashboard',
-    'Visits',
-    'Orders',
-  ];
+  static const _titles = ['Dashboard', 'Visits', 'Orders'];
 
   void _changeTab(int index) {
     navigationShell.goBranch(
       index,
-      initialLocation:
-          index == navigationShell.currentIndex,
+      initialLocation: index == navigationShell.currentIndex,
     );
   }
 
@@ -31,9 +22,7 @@ class MainShell extends ConsumerWidget {
     final currentIndex = navigationShell.currentIndex;
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(_titles[currentIndex]),
-      ),
+      appBar: AppBar(title: Text(_titles[currentIndex])),
 
       drawer: Drawer(
         child: SafeArea(
@@ -42,13 +31,9 @@ class MainShell extends ConsumerWidget {
               const DrawerHeader(
                 child: Row(
                   children: [
-
                     CircleAvatar(
                       radius: 28,
-                      child: Icon(
-                        Icons.person_outline,
-                        size: 30,
-                      ),
+                      child: Icon(Icons.person_outline, size: 30),
                     ),
 
                     SizedBox(width: 16),
@@ -62,7 +47,6 @@ class MainShell extends ConsumerWidget {
                         ),
                       ),
                     ),
-
                   ],
                 ),
               ),
@@ -100,7 +84,6 @@ class MainShell extends ConsumerWidget {
               const Divider(),
 
               // More DSR drawer modules will be added here.
-
               const Spacer(),
 
               const Divider(),
@@ -112,9 +95,7 @@ class MainShell extends ConsumerWidget {
                 ),
                 title: Text(
                   'Logout',
-                  style: TextStyle(
-                    color: Theme.of(context).colorScheme.error,
-                  ),
+                  style: TextStyle(color: Theme.of(context).colorScheme.error),
                 ),
                 onTap: () {
                   Navigator.pop(context);
@@ -125,14 +106,13 @@ class MainShell extends ConsumerWidget {
           ),
         ),
       ),
-      
+
       body: navigationShell,
 
       bottomNavigationBar: NavigationBar(
         selectedIndex: currentIndex,
         onDestinationSelected: _changeTab,
         destinations: const [
-
           NavigationDestination(
             icon: Icon(Icons.dashboard_outlined),
             selectedIcon: Icon(Icons.dashboard),
@@ -150,11 +130,8 @@ class MainShell extends ConsumerWidget {
             selectedIcon: Icon(Icons.receipt_long),
             label: 'Orders',
           ),
-
         ],
       ),
-
     );
   }
-
 }
