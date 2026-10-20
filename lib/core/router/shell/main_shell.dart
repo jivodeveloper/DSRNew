@@ -4,10 +4,11 @@ import 'package:go_router/go_router.dart';
 import 'package:jivodsr/features/auth/presentation/providers/auth_providers.dart';
 
 class MainShell extends ConsumerWidget {
+
   const MainShell({required this.navigationShell, super.key});
 
   final StatefulNavigationShell navigationShell;
-
+  
   static const _titles = ['Dashboard', 'Visits', 'Orders'];
 
   void _changeTab(int index) {
@@ -134,4 +135,5 @@ class MainShell extends ConsumerWidget {
       ),
     );
   }
+
 }

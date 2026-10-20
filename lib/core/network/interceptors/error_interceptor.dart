@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:jivodsr/core/error/app_exception.dart';
 
 class ErrorInterceptor extends Interceptor {
+
   @override
   void onError(DioException err, ErrorInterceptorHandler handler) {
     handler.reject(
@@ -34,4 +35,6 @@ class ErrorInterceptor extends Interceptor {
       statusCode: code,
     );
   }
+
+
 }

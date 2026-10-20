@@ -19,7 +19,7 @@ class AuthRemoteDatasource {
 
       final user = UserDto.fromJson(response.data ?? const {});
 
-      if (user.personId == 0) {
+      if (user.personId <= 0) {
         throw const InvalidCredentialsException();
       }
 
@@ -28,7 +28,11 @@ class AuthRemoteDatasource {
       final error = e.error;
       throw error is AppException
           ? error
-          : UnknownException(e.message ?? 'Unknown error');
+          : const UnknownException('Unable to log in. Please try again.');
+    } on TypeError {
+      throw const UnknownException(
+        'Unexpected login response from the server.',
+      );
     }
   }
 }

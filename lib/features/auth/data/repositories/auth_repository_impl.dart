@@ -11,8 +11,11 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<bool> hasSession() async => _currentUser != null;
 
   @override
-  Future<User> login({required String email, required String password}) async {
-    final dto = await _remote.login(username: email, password: password);
+  Future<User> login({
+    required String username,
+    required String password,
+  }) async {
+    final dto = await _remote.login(username: username, password: password);
     final user = dto.toEntity();
     _currentUser = user;
 

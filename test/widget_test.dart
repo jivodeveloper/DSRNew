@@ -7,7 +7,7 @@ void main() {
     await tester.pumpWidget(const ProviderScope(child: App()));
     await tester.pumpAndSettle();
 
-    expect(find.text('Email'), findsOneWidget);
+    expect(find.text('Username'), findsOneWidget);
     expect(find.text('Password'), findsOneWidget);
     expect(find.text('Login'), findsOneWidget);
   });

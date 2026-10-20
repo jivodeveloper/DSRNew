@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 
 class AuthInterceptors extends Interceptor {
+  
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     options.headers['Authorization'] = 'Bearer YOUR_ACCESS_TOKEN';
@@ -18,4 +19,5 @@ class AuthInterceptors extends Interceptor {
     // Handle errors, e.g., token expiration
     super.onError(err, handler);
   }
+
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class DashboardScreen extends StatelessWidget {
+  
   const DashboardScreen({super.key});
 
   @override
@@ -8,6 +9,7 @@ class DashboardScreen extends StatelessWidget {
     return ListView(
       padding: const EdgeInsets.all(16),
       children: [
+        
         Text(
           'Good morning!',
           style: Theme.of(
@@ -17,8 +19,8 @@ class DashboardScreen extends StatelessWidget {
         const SizedBox(height: 8),
         const Text('Here is your daily sales overview.'),
 
-        // Keep your existing dashboard cards here.
       ],
     );
   }
+
 }
