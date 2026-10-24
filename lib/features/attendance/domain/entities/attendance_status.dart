@@ -10,9 +10,9 @@ enum AttendanceStatus {
   final String label;
 
   const AttendanceStatus(this.code, this.label);
-
-  bool get isPresent => this ==present || this == halfDay || this == absent;
+  
+  bool get isWorkingDay => this ==present || this == halfDay || this == absent;
 
 }
 
-enum Color { red, green }
+// enum Color { red, green }
