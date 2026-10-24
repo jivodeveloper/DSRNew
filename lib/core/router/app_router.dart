@@ -89,7 +89,7 @@ final routerProvider = Provider<GoRouter>((ref) {
               GoRoute(
                 path: Routes.attendance,
                 builder: (context, state) {
-                  return const Attendance();
+                  return const AttendanceScreen();
                 },
               ),
             ],
