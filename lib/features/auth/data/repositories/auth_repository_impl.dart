@@ -3,10 +3,15 @@ import 'package:jivodsr/features/auth/domain/entities/user.dart';
 import 'package:jivodsr/features/auth/domain/repositories/auth_repository.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
+  
   AuthRepositoryImpl(this._remote);
+  
   User? _currentUser;
   final AuthRemoteDatasource _remote;
-
+  
+  @override
+  User? get currentUser => _currentUser;
+  
   @override
   Future<bool> hasSession() async => _currentUser != null;
 
@@ -18,10 +23,11 @@ class AuthRepositoryImpl implements AuthRepository {
     final dto = await _remote.login(username: username, password: password);
     final user = dto.toEntity();
     _currentUser = user;
-
+    
     return user;
   }
 
   @override
   Future<void> logout() async => _currentUser = null;
+
 }

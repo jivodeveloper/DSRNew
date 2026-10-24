@@ -9,9 +9,11 @@ class LoginScreen extends ConsumerStatefulWidget {
 
   @override
   ConsumerState<LoginScreen> createState() => _LoginScreenState();
+
 }
 
 class _LoginScreenState extends ConsumerState<LoginScreen> {
+
   final _formKey = GlobalKey<FormState>();
   final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
@@ -25,7 +27,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     _passwordController.dispose();
     super.dispose();
   }
-
+  
   Future<void> submit() async {
     if (_isLoading) return;
     FocusScope.of(context).unfocus();
@@ -41,20 +43,27 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
           .login(
             username: _usernameController.text.trim(),
             password: _passwordController.text,
-            // rememberMe: _isrememberMe,
+
+
           );
     } on AppException catch (e) {
+
       if (!mounted) return;
       ScaffoldMessenger.of(
         context,
       ).showSnackBar(SnackBar(content: Text(e.message)));
+
     } catch (_) {
+
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Unable to log in. Please try again.')),
       );
+
     } finally {
+
       if (mounted) setState(() => _isLoading = false);
+
     }
 
   }
@@ -305,4 +314,5 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     );
     
   }
+
 }
