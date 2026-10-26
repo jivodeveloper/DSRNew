@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jivodsr/features/attendance/presentation/providers/attendance_providers.dart';
 import 'package:jivodsr/features/attendance/presentation/widgets/today_card.dart';
 
-
 class AttendanceScreen extends ConsumerWidget{
 
   const AttendanceScreen({super.key});
@@ -16,6 +15,7 @@ class AttendanceScreen extends ConsumerWidget{
       data: (month){
         final today = month.dayFor(DateTime.now());
         return ListView(
+          padding: EdgeInsets.all(14),
           children: [
 
             if(today != null) 
