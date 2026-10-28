@@ -2,17 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:jivodsr/core/theme/app_colors.dart';
 
 class TodayCard extends StatelessWidget {
+
   const TodayCard({super.key});
 
   @override
   Widget build(BuildContext context) {
+
     return Card(
       margin: EdgeInsets.zero,
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
-         
+          
           children: [
+
             Row(
               children: [
                 Expanded(
@@ -113,5 +116,6 @@ class TodayCard extends StatelessWidget {
         ),
       ),
     );
+    
   }
 }
