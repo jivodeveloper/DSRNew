@@ -5,6 +5,7 @@ import 'package:jivodsr/core/theme/app_colors.dart';
 import 'package:jivodsr/features/auth/presentation/providers/auth_providers.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {
+   
   const LoginScreen({super.key});
 
   @override
@@ -27,32 +28,35 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     _passwordController.dispose();
     super.dispose();
   }
-  
+
   Future<void> submit() async {
+    
     if (_isLoading) return;
+
     FocusScope.of(context).unfocus();
+    
     if (!_formKey.currentState!.validate()) {
       return;
     }
 
     setState(() => _isLoading = true);
-
+    
     try {
+
       await ref
           .read(authControllerProvider.notifier)
           .login(
             username: _usernameController.text.trim(),
             password: _passwordController.text,
-
-
           );
+
     } on AppException catch (e) {
 
       if (!mounted) return;
       ScaffoldMessenger.of(
         context,
       ).showSnackBar(SnackBar(content: Text(e.message)));
-
+      
     } catch (_) {
 
       if (!mounted) return;
@@ -121,7 +125,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  // The current logo has a white background.
+                  
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 12),
                     decoration: BoxDecoration(
@@ -135,7 +139,9 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                       semanticLabel: 'Jivo',
                     ),
                   ),
+
                   const SizedBox(height: 32),
+
                   Container(
                     width: double.infinity,
                     padding: const EdgeInsets.all(24),
@@ -190,7 +196,9 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                                 return null;
                               },
                             ),
+
                             const SizedBox(height: 20),
+
                             TextFormField(
                               controller: _passwordController,
                               enabled: !_isLoading,
@@ -272,6 +280,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,
                                         children: [
+
                                           SizedBox(
                                             width: 18,
                                             height: 18,
@@ -280,21 +289,27 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                                               color: colors.onSurfaceVariant,
                                             ),
                                           ),
+
                                           const SizedBox(width: 12),
+
                                           const Flexible(
                                             child: Text('Signing in…'),
                                           ),
+
                                         ],
                                       )
                                     : const Text('Sign in'),
                               ),
                             ),
+
                           ],
                         ),
                       ),
                     ),
                   ),
+
                   const SizedBox(height: 24),
+
                   Text(
                     'JIVO DSR',
                     style: TextStyle(

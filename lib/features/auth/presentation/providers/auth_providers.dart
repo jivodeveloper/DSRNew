@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jivodsr/core/network/dio_client.dart';
+import 'package:jivodsr/core/providers/core_providers.dart';
 import 'package:jivodsr/features/auth/data/datasources/auth_remote_datasource.dart';
 import 'package:jivodsr/features/auth/data/repositories/auth_repository_impl.dart';
 import 'package:jivodsr/features/auth/domain/repositories/auth_repository.dart';
@@ -10,9 +11,11 @@ final authRemoteDatasourceProvider = Provider<AuthRemoteDatasource>((ref) {
 });
 
 final authRepositoryProvider = Provider<AuthRepository>((ref) {
-  return AuthRepositoryImpl(ref.watch(authRemoteDatasourceProvider));
+  return AuthRepositoryImpl(ref.watch(authRemoteDatasourceProvider),
+  ref.watch(secureProviders));
 });
 
 final authControllerProvider = NotifierProvider<AuthController, AuthStatus>(
   AuthController.new,
 );
+

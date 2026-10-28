@@ -3,6 +3,10 @@ import 'package:flutter/material.dart';
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
 
+  Future<void> _checkLogin() async{
+                                                                 
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,4 +22,5 @@ class SplashScreen extends StatelessWidget {
       ),
     );
   }
+
 }
