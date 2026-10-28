@@ -12,6 +12,7 @@ import 'package:jivodsr/features/dashboard/presentation/screens/dashboard.dart';
 import 'package:jivodsr/features/shops/presentation/screens/shops.dart';
 
 final routerProvider = Provider<GoRouter>((ref) {
+
   final refreshNotifier = RouterRefreshNotifier();
   ref.onDispose(() {
     refreshNotifier.dispose();
@@ -25,6 +26,7 @@ final routerProvider = Provider<GoRouter>((ref) {
     initialLocation: Routes.splash,
     refreshListenable: refreshNotifier,
     redirect: (context, state) {
+
       final authStatus = ref.read(authControllerProvider);
       final currentLocation = state.matchedLocation;
 
@@ -46,8 +48,10 @@ final routerProvider = Provider<GoRouter>((ref) {
       }
 
       return null;
-    },
+
+    },  
     routes: [
+
       GoRoute(
         path: Routes.splash,
         builder: (context, state) => const SplashScreen(),
@@ -56,12 +60,12 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: Routes.login,
         builder: (context, state) => const LoginScreen(),
       ),
-      // GoRoute(path: Routes.dashboard, builder: (context, state) => const DashboardScreen()),
       StatefulShellRoute.indexedStack(
         builder: (context, state, navigationshell) {
           return MainShell(navigationShell: navigationshell);
         },
         branches: [
+
           StatefulShellBranch(
             routes: [
               GoRoute(
@@ -94,8 +98,10 @@ final routerProvider = Provider<GoRouter>((ref) {
               ),
             ],
           ),
+          
         ],
       ),
+
     ],
   );
 });

@@ -56,7 +56,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
       ScaffoldMessenger.of(
         context,
       ).showSnackBar(SnackBar(content: Text(e.message)));
-      
+
     } catch (_) {
 
       if (!mounted) return;
@@ -158,6 +158,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
+
                             Text(
                               'Welcome back',
                               style: TextStyle(
@@ -169,6 +170,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                               ),
                             ),
                             const SizedBox(height: 10),
+                            
                             Text(
                               'Sign in to your Jivo DSR account.',
                               style: TextStyle(
@@ -177,6 +179,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                                 color: colors.onSurfaceVariant,
                               ),
                             ),
+
                             const SizedBox(height: 32),
                             TextFormField(
                               controller: _usernameController,

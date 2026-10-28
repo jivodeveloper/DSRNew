@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatelessWidget {
-  const SplashScreen({super.key});
 
-  Future<void> _checkLogin() async{
-                                                                 
-  }
+  const SplashScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -14,8 +14,9 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   User? get currentUser => _currentUser;
 
-  @override
-  Future<bool> hasSession() async => _currentUser != null;
+  Future<bool> hasSession() async{
+    return _storage.hasAccessToken();
+  }
 
   @override
   Future<void> login({
@@ -24,16 +25,17 @@ class AuthRepositoryImpl implements AuthRepository {
   }) async {
 
     final dto = await _remote.login(username: username, password: password);
-    await _storage.saveTokens(accessToken:dto.access,
-                              refreshToken:dto.refresh);
-
-    // final user = dto.user.toEntity();
-    // _currentUser = user;
-    // return user;
-
-  }
+    if(!dto.isValid){
+      throw const FormatException('Login response did not contain and access token');
+    }
+    await _storage.saveTokens(accessToken:dto.access,refreshToken:dto.refresh);
+    
+  } 
 
   @override
-  Future<void> logout() async => _currentUser = null;
+  Future<void> logout() async{
+    await _storage.deleteTokens();
+    _currentUser = null;
+  } 
 
 }

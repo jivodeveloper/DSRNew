@@ -2,87 +2,69 @@ import 'package:jivodsr/features/dashboard/domain/entities/user_details.dart';
 
 class UserDetailsDto {
   const UserDetailsDto({
-    required this.personId,
-    this.personName,
-    this.userName,
-    this.personType,
-    this.group,
-    this.attStatus,
-    this.target,
-    this.productiveTarget,
-    this.visitTarget,
-    this.totalShops,
-    this.assignedShops,
-    this.shopsCovered,
-    this.shopsProductive,
-    this.distanceAllowed,
-    this.startTime,
-    this.endTime,
+    required this.id,
+    required this.username,
+    required this.email,
+    required this.firstName,
+    required this.lastName,
+    this.phone,
+    required this.userType,
+    required this.organization,
+    required this.organizationName,
+    required this.isSuperuser,
+    required this.permissions,
   });
 
-  final int personId;
-  final String? personName;
-  final String? userName;
-  final String? personType;
-  final String? group;
-  final String? attStatus;
-  final num? target;
-  final num? productiveTarget;
-  final num? visitTarget;
-  final num? totalShops;
-  final num? assignedShops;
-  final num? shopsCovered;
-  final num? shopsProductive;
-  final num? distanceAllowed;
-  final Duration? startTime;
-  final Duration? endTime;
+  final int id;
+  final String username;
+  final String email;
+  final String firstName;
+  final String lastName;
+  final String? phone;
+  final String userType;
+  final int organization;
+  final String organizationName;
+  final bool isSuperuser;
+  final Map<String, ModulePermission> permissions;
 
   factory UserDetailsDto.fromJson(Map<String, dynamic> json) {
-    return UserDetailsDto(
-      personId: (json['personID'] as num?)?.toInt() ?? 0,
-      personName: json['personName'] as String?,
-      userName: json['userName'] as String?,
-      personType: json['personType'] as String?,
-      group: json['group'] as String?,
-      attStatus: json['attStatus'] as String?,
-      target: json['target'] as num?,
-      productiveTarget: json['productiveTarget'] as num?,
-      visitTarget: json['visitTarget'] as num?,
-      totalShops: json['totalShops'] as num?,
-      assignedShops: json['AssignedShops'] as num?, // capital A in API
-      shopsCovered: json['shopsCovered'] as num?,
-      shopsProductive: json['shopsProductive'] as num?,
-      distanceAllowed: json['distanceAllowed'] as num?,
-      startTime: _parseTimeSpan(json['startTime']),
-      endTime: _parseTimeSpan(json['endTime']),
-    );
-  }
+    final permissionsJson = json['permissions'] as Map<String, dynamic>? ?? {};
 
-  // .NET TimeSpan comes as an object: { "TotalSeconds": 39671, ... }
-  static Duration? _parseTimeSpan(Object? value) {
-    if (value is! Map<String, dynamic>) return null;
-    final seconds = value['TotalSeconds'] as num?;
-    return seconds == null ? null : Duration(seconds: seconds.toInt());
+    return UserDetailsDto(
+      id: (json['id'] as num).toInt(),
+      username: json['username'] as String,
+      email: json['email'] as String? ?? '',
+      firstName: json['first_name'] as String? ?? '',
+      lastName: json['last_name'] as String? ?? '',
+      phone: json['phone'] as String?,
+      userType: json['user_type'] as String,
+      organization: (json['organization'] as num).toInt(),
+      organizationName: json['organization_name'] as String,
+      isSuperuser: json['isSuperuser'] as bool? ?? false,
+      permissions: Map.unmodifiable(
+        permissionsJson.map(
+          (key, value) => MapEntry(
+            key,
+            ModulePermission.fromJson(value as Map<String, dynamic>),
+          ),
+        ),
+      ),
+    );
   }
 
   UserDetails toEntity() {
     return UserDetails(
-      id: personId,
-      name: personName ?? '',
-      userName: userName ?? '',
-      type: personType,
-      group: group,
-      attendanceStatus: attStatus,
-      target: target?.toDouble() ?? 0,
-      productiveTarget: productiveTarget?.toInt() ?? 0,
-      visitTarget: visitTarget?.toInt() ?? 0,
-      totalShops: totalShops?.toInt() ?? 0,
-      assignedShops: assignedShops?.toInt() ?? 0,
-      shopsCovered: shopsCovered?.toInt() ?? 0,
-      shopsProductive: shopsProductive?.toInt() ?? 0,
-      distanceAllowed: distanceAllowed?.toInt() ?? 0,
-      startTime: startTime,
-      endTime: endTime,
+      id: id,
+      username: username,
+      email: email,
+      firstName: firstName,
+      lastName: lastName,
+      phone: phone,
+      userType: userType,
+      organization: organization,
+      organizationName: organizationName,
+      isSuperuser: isSuperuser,
+      permissions: permissions,
     );
   }
 }
