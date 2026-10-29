@@ -74,6 +74,9 @@ class UserDetails {
   }
 }
 
+
+
+
 class ModulePermission {
   const ModulePermission({
     required this.platform,

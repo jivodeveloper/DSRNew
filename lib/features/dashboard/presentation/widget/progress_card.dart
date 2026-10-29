@@ -44,24 +44,24 @@ class ProgressCard extends StatelessWidget {
                         Expanded(
                           child: Text('Target', style: AppTextStyles.secondary),
                         ),
-                        Text(details.target.inr, style: AppTextStyles.bigNumber),
+                       // Text(details.target.inr, style: AppTextStyles.bigNumber),
                       ],
                     ),
                   ),
                   const Divider(),
-                  ProgressRow(
-                    title: 'Shops covered',
-                    subtitle:
-                        '${details.shopsCovered} of ${details.assignedShops} · ${details.shopsLeft} left',
-                    progress: details.coverageProgress,
-                  ),
+                  // ProgressRow(
+                  //   title: 'Shops covered',
+                  //   subtitle:
+                  //       '${details.shopsCovered} of ${details.assignedShops} · ${details.shopsLeft} left',
+                  //   progress: details.coverageProgress,
+                  // ),
                   const Divider(),
-                  ProgressRow(
-                    title: 'Productive calls',
-                    subtitle:
-                        '${details.shopsProductive} of ${details.productiveTarget} · ${details.productiveLeft} to go',
-                    progress: details.productiveProgress,
-                  ),
+                  // ProgressRow(
+                  //   title: 'Productive calls',
+                  //   subtitle:
+                  //       '${details.shopsProductive} of ${details.productiveTarget} · ${details.productiveLeft} to go',
+                  //   progress: details.productiveProgress,
+                  // ),
                 ],
               ),
             ),

@@ -22,7 +22,7 @@ final userDetailsProvider = FutureProvider<UserDetails>((ref) async {
   if (user == null) {
     throw const UnauthorizedException();
   }
-  
-  return ref.watch(dashboardRepositoryProvider).getUserDetails(userId: user.id);
+
+  return ref.watch(dashboardRepositoryProvider).getDetailsById(user.id);
 
 });

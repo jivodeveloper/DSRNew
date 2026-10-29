@@ -1,11 +1,35 @@
 import 'package:dio/dio.dart';
+import 'package:jivodsr/core/storage/secure_storage.dart';
 
 class AuthInterceptors extends Interceptor {
   
+  AuthInterceptors(this._storage);
+
+  final SecureStorageService _storage;
+
   @override
-  void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-    options.headers['Authorization'] = 'Bearer YOUR_ACCESS_TOKEN';
-    super.onRequest(options, handler);
+  void onRequest(
+    RequestOptions options,
+    RequestInterceptorHandler handler,
+  ) async {
+    
+    try {
+      final token = await _storage.getAccessToken();
+
+      if (token != null && token.isNotEmpty) {
+        options.headers['Authorization'] = 'Bearer $token';
+      }
+      
+      handler.next(options);
+    } catch (error) {
+      handler.reject(
+        DioException(
+          requestOptions: options,
+          error: error,
+          message: 'Unable to read the saved token.',
+        ),
+      );
+    }
   }
 
   @override
@@ -19,5 +43,4 @@ class AuthInterceptors extends Interceptor {
     // Handle errors, e.g., token expiration
     super.onError(err, handler);
   }
-
 }

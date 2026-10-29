@@ -15,7 +15,7 @@ class DashboardRepoImpl implements DashboardRepository {
   final DashboardRemoteDataSource _remoteDataSource;
 
   @override
-  Future<UserDetails> getDetailsById() {
+  Future<UserDetails> getDetailsById(int userId) {
     // TODO: implement getDetailsById
     throw UnimplementedError();
   }

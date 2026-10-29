@@ -3,7 +3,6 @@ import 'package:jivodsr/core/theme/app_colors.dart';
 import 'package:jivodsr/core/theme/app_text_styles.dart';
 import 'package:jivodsr/core/utils/extensions.dart';
 import 'package:jivodsr/features/dashboard/domain/entities/user_details.dart';
-import 'package:jivodsr/core/widgets/status_pill.dart';
 
 class ProfileCard extends StatelessWidget {
 
@@ -44,16 +43,16 @@ class ProfileCard extends StatelessWidget {
                 ),
                 
                 const SizedBox(width: 8),
-                details.isPresent
-                    ? const StatusPill(
-                        label: 'Present',
-                        icon: Icons.check_circle_outline,
-                      )
-                    : const StatusPill(
-                        label: 'Not marked',
-                        icon: Icons.schedule,
-                        tone: PillTone.warn,
-                      ),
+                // details.isPresent
+                //     ? const StatusPill(
+                //         label: 'Present',
+                //         icon: Icons.check_circle_outline,
+                //       )
+                //     : const StatusPill(
+                //         label: 'Not marked',
+                //         icon: Icons.schedule,
+                //         tone: PillTone.warn,
+                //       ),
 
               ],
             ),
@@ -63,15 +62,15 @@ class ProfileCard extends StatelessWidget {
                 style: AppTextStyles.secondary,
                 children: [
                   const TextSpan(text: 'Your role: '),
-                  TextSpan(
-                    text: details.type ?? '-',
-                    style: const TextStyle(
-                      fontWeight: FontWeight.w600,
-                      color: AppColors.textPrimary,
-                    ),
-                  ),
-                  if (details.group != null)
-                    TextSpan(text: ' · ${details.group}'),
+                  // TextSpan(
+                  //   text: details.type ?? '-',
+                  //   style: const TextStyle(
+                  //     fontWeight: FontWeight.w600,
+                  //     color: AppColors.textPrimary,
+                  //   ),
+                  // ),
+                  // if (details.group != null)
+                  //   TextSpan(text: ' · ${details.group}'),
                 ],
               ),
             ),
