@@ -7,10 +7,12 @@ import 'package:jivodsr/features/dashboard/presentation/widget/profile_card.dart
 import 'package:jivodsr/features/dashboard/presentation/widget/progress_card.dart';
 
 class DashboardScreen extends ConsumerWidget {
+  
   const DashboardScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    
     final userDetails = ref.watch(userDetailsProvider);
 
     return RefreshIndicator(
@@ -68,6 +70,7 @@ class DashboardScreen extends ConsumerWidget {
       ),
     );
   }
+
 }
 
 class _ErrorCard extends StatelessWidget {

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jivodsr/core/theme/app_colors.dart';
 import 'package:jivodsr/core/theme/app_text_styles.dart';
-import 'package:jivodsr/core/utils/extensions.dart';
 import 'package:jivodsr/features/dashboard/domain/entities/user_details.dart';
-import 'package:jivodsr/features/dashboard/presentation/widget/progress_row.dart';
 
 class ProgressCard extends StatelessWidget {
   

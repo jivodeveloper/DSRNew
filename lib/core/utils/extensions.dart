@@ -1,29 +1,29 @@
 /// Extension to format a DateTime object into a specific string format
 extension DateTimeX on DateTime{
 
-  static const _months = [
-    'Janu',
-    'Feb',
-    'Mar',
-    'Apr',
+   static const _months = [
+    'January',
+    'February',
+    'March',
+    'April',
     'May',
-    'Jun',
-    'Jul',
-    'Aug',
-    'Sept',
-    'Oct',
-    'Nov',
-    'Dec'
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December'
   ];
 
   static const _weekdays = [
-    'Mond',
-    'Tues',
-    'Wedn',
-    'Thurs',
-    'Fri',
-    'Sat',
-    'Sun'
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
+    'Sunday'
   ];
 
   String get dMMMy => '${day.toString().padLeft(2, '0')}-${_months[month - 1]}-$year';
