@@ -1,5 +1,4 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:jivodsr/core/error/app_exception.dart';
 import 'package:jivodsr/core/network/dio_client.dart';
 import 'package:jivodsr/features/auth/presentation/providers/auth_providers.dart';
 import 'package:jivodsr/features/dashboard/data/datasources/dashboard_remote_datasource.dart';
@@ -15,14 +14,34 @@ final dashboardRepositoryProvider = Provider<DashboardRepository>((ref) {
   return DashboardRepoImpl(ref.watch(dashboardRemoteDataSourceProvider));
 });
 
+// final userDetailsProvider = FutureProvider<UserDetails>((ref) async {
+
+//   final user = ref.watch(authRepositoryProvider).currentUser;
+
+//   if (user == null) {
+//     throw const UnauthorizedException();
+//   }
+
+//   return ref.watch(dashboardRepositoryProvider).getDetailsById(user.id);
+
+// });
+
+// final userDetailsProvider =
+//     FutureProvider.autoDispose<UserDetails>((ref) async {
+//   final status = ref.watch(authControllerProvider);
+
+//   if (status != AuthStatus.authenticated) {
+//     throw const UnauthorizedException();
+//   }
+
+//   return ref.watch(dashboardRepositoryProvider).getDetailsById();
+// });
+
+
 final userDetailsProvider = FutureProvider<UserDetails>((ref) async {
 
-  final user = ref.watch(authRepositoryProvider).currentUser;
+  ref.watch(authControllerProvider);
 
-  if (user == null) {
-    throw const UnauthorizedException();
-  }
-
-  return ref.watch(dashboardRepositoryProvider).getDetailsById(user.id);
+  return ref.watch(dashboardRepositoryProvider).getDetailsById();
 
 });

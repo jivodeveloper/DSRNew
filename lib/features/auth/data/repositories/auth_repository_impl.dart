@@ -14,6 +14,7 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   User? get currentUser => _currentUser;
 
+  @override
   Future<bool> hasSession() async{
     return _storage.hasAccessToken();
   }

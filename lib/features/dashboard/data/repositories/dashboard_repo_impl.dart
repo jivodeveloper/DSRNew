@@ -15,11 +15,11 @@ class DashboardRepoImpl implements DashboardRepository {
   final DashboardRemoteDataSource _remoteDataSource;
 
   @override
-  Future<UserDetails> getDetailsById(int userId) {
-    // TODO: implement getDetailsById
-    throw UnimplementedError();
+  Future<UserDetails> getDetailsById()  async{
+      final dto = await _remoteDataSource.getUserDetails();
+      return dto.toEntity();
   }
-
+  
   // @override
   // Future<UserDetails> getUserDetails({required int userId}) async {
   //   final dto = await _remoteDataSource.getUserDetails(userId: userId);

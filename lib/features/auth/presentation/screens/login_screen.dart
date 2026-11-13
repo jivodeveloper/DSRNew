@@ -5,16 +5,13 @@ import 'package:jivodsr/core/theme/app_colors.dart';
 import 'package:jivodsr/features/auth/presentation/providers/auth_providers.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {
-   
   const LoginScreen({super.key});
 
   @override
   ConsumerState<LoginScreen> createState() => _LoginScreenState();
-
 }
 
 class _LoginScreenState extends ConsumerState<LoginScreen> {
-
   final _formKey = GlobalKey<FormState>();
   final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
@@ -30,51 +27,39 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   }
 
   Future<void> submit() async {
-    
     if (_isLoading) return;
 
     FocusScope.of(context).unfocus();
-    
+
     if (!_formKey.currentState!.validate()) {
       return;
     }
 
     setState(() => _isLoading = true);
-    
-    try {
 
+    try {
       await ref
           .read(authControllerProvider.notifier)
           .login(
             username: _usernameController.text.trim(),
             password: _passwordController.text,
           );
-
     } on AppException catch (e) {
-
       if (!mounted) return;
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text(e.message)));
-
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(e.message)));
     } catch (_) {
-
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Unable to log in. Please try again.')),
       );
-
     } finally {
-
       if (mounted) setState(() => _isLoading = false);
-
     }
-
   }
 
   @override
   Widget build(BuildContext context) {
-    
     final brightness = Theme.of(context).brightness;
     final colors = ColorScheme.fromSeed(
       seedColor: AppColors.primaryColor,
@@ -125,7 +110,6 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 12),
                     decoration: BoxDecoration(
@@ -158,7 +142,6 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-
                             Text(
                               'Welcome back',
                               style: TextStyle(
@@ -170,7 +153,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                               ),
                             ),
                             const SizedBox(height: 10),
-                            
+
                             Text(
                               'Sign in to your Jivo DSR account.',
                               style: TextStyle(
@@ -201,7 +184,6 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                             ),
 
                             const SizedBox(height: 20),
-
                             TextFormField(
                               controller: _passwordController,
                               enabled: !_isLoading,
@@ -243,21 +225,24 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                               },
                             ),
 
-                            CheckboxListTile(
-                              title: const Text('Remember me'),
-                              value: _isrememberMe,
-                              onChanged: (value) {
-                                setState(() {
-                                  _isrememberMe = value ?? false;
-                                });
-                              },
-                              controlAffinity: ListTileControlAffinity.leading,
-                              contentPadding: EdgeInsets.zero
-                            
+                            Material(
+                              color: Colors.transparent,
+                              child: CheckboxListTile(
+                                title: const Text('Remember me'),
+                                value: _isrememberMe,
+                                onChanged: (value) {
+                                  setState(() {
+                                    _isrememberMe = value ?? false;
+                                  });
+                                },
+                                controlAffinity:
+                                    ListTileControlAffinity.leading,
+                                contentPadding: EdgeInsets.zero,
+                              ),
                             ),
 
                             const SizedBox(height: 28),
-                            
+
                             SizedBox(
                               width: double.infinity,
                               child: FilledButton(
@@ -283,7 +268,6 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,
                                         children: [
-
                                           SizedBox(
                                             width: 18,
                                             height: 18,
@@ -298,13 +282,11 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                                           const Flexible(
                                             child: Text('Signing in…'),
                                           ),
-
                                         ],
                                       )
                                     : const Text('Sign in'),
                               ),
                             ),
-
                           ],
                         ),
                       ),
@@ -330,7 +312,5 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
         ),
       ),
     );
-    
   }
-
 }
