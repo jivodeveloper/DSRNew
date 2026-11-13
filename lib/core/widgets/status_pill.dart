@@ -5,7 +5,6 @@ import 'package:jivodsr/core/theme/app_colors.dart';
 enum PillTone { ok, warn }
 
 class StatusPill extends StatelessWidget {
-
   const StatusPill({
     super.key,
     required this.label,
@@ -33,24 +32,27 @@ class StatusPill extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
     final (toneFg, toneBg, toneBorder) = switch (tone) {
       PillTone.ok => (AppColors.okFg, AppColors.okBg, AppColors.okBorder),
-      PillTone.warn => (AppColors.warnFg, AppColors.warnBg, AppColors.warnBorder),
+      PillTone.warn => (
+        AppColors.warnFg,
+        AppColors.warnBg,
+        AppColors.warnBorder,
+      ),
     };
-    
+
     final fg = this.fg ?? toneFg;
     final bg = this.bg ?? toneBg;
     final border = borderColor ?? toneBorder;
 
-    return Container( 
+    return Container(
       padding: const EdgeInsets.fromLTRB(6, 3, 8, 3),
       decoration: BoxDecoration(
         color: bg,
         border: Border.all(color: border),
         borderRadius: BorderRadius.circular(999),
       ),
-      
+
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -66,9 +68,6 @@ class StatusPill extends StatelessWidget {
           ),
         ],
       ),
-
     );
-
   }
-  
 }

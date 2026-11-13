@@ -4,9 +4,8 @@ import 'package:jivodsr/features/auth/domain/entities/user.dart';
 import 'package:jivodsr/features/auth/domain/repositories/auth_repository.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
-  
-  AuthRepositoryImpl(this._remote,this._storage);
-  
+  AuthRepositoryImpl(this._remote, this._storage);
+
   User? _currentUser;
   final AuthRemoteDatasource _remote;
   final SecureStorageService _storage;
@@ -15,7 +14,7 @@ class AuthRepositoryImpl implements AuthRepository {
   User? get currentUser => _currentUser;
 
   @override
-  Future<bool> hasSession() async{
+  Future<bool> hasSession() async {
     return _storage.hasAccessToken();
   }
 
@@ -24,19 +23,21 @@ class AuthRepositoryImpl implements AuthRepository {
     required String username,
     required String password,
   }) async {
-
     final dto = await _remote.login(username: username, password: password);
-    if(!dto.isValid){
-      throw const FormatException('Login response did not contain and access token');
+    if (!dto.isValid) {
+      throw const FormatException(
+        'Login response did not contain and access token',
+      );
     }
-    await _storage.saveTokens(accessToken:dto.access,refreshToken:dto.refresh);
-    
-  } 
+    await _storage.saveTokens(
+      accessToken: dto.access,
+      refreshToken: dto.refresh,
+    );
+  }
 
   @override
-  Future<void> logout() async{
+  Future<void> logout() async {
     await _storage.deleteTokens();
     _currentUser = null;
-  } 
-
+  }
 }

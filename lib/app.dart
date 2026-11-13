@@ -4,12 +4,10 @@ import 'package:jivodsr/core/router/app_router.dart';
 import 'package:jivodsr/core/theme/app_theme.dart';
 
 class App extends ConsumerWidget {
-
   const App({super.key});
-    
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-
     final appRouter = ref.watch(routerProvider);
 
     return MaterialApp.router(
@@ -19,7 +17,5 @@ class App extends ConsumerWidget {
       darkTheme: AppTheme.dark,
       routerConfig: appRouter,
     );
-
   }
-
 }

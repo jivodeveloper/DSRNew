@@ -1,7 +1,6 @@
 import 'dart:ui';
 
 class AppColors {
-  
   const AppColors._();
 
   //Old colours
@@ -11,12 +10,12 @@ class AppColors {
   static const Color textColor = Color(0xFF000000);
   static const Color surfaceLight = Color(0xFFFFFFFF);
   static const Color surfaceDark = Color(0xFF121212);
-  
+
   // Surfaces
   static const Color background = Color(0xFFF7F8FA);
   static const Color card = Color(0xFFFFFFFF);
   static const Color border = Color(0xFFE7E8EC);
-  
+
   // Text
   static const Color textPrimary = Color(0xFF111827);
   static const Color textSecondary = Color(0xFF4B5563);
@@ -45,7 +44,7 @@ class AppColors {
   // Icon tints
   static const Color violet = Color(0xFF7C3AED);
 
-    // Attendance statuses (fg / bg / border)
+  // Attendance statuses (fg / bg / border)
   static const Color presentFg = Color(0xFF15803D);
   static const Color presentBg = Color(0xFFEAF7EE);
   static const Color presentBorder = Color(0xFFBBE5C8);
@@ -67,8 +66,8 @@ class AppColors {
   static const Color holidayBorder = Color(0xFFCBD1FA);
 
   // Misc
-  static const Color segmentBg = Color(0xFFECEEF1);   // grey behind "Today | Monthly report"
-  static const Color textFaint = Color(0xFFB6BBC4);   // "--:--" and future dates
-  
-
+  static const Color segmentBg = Color(
+    0xFFECEEF1,
+  ); // grey behind "Today | Monthly report"
+  static const Color textFaint = Color(0xFFB6BBC4); // "--:--" and future dates
 }

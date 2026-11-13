@@ -7,12 +7,10 @@ import 'package:jivodsr/features/dashboard/presentation/widget/profile_card.dart
 import 'package:jivodsr/features/dashboard/presentation/widget/progress_card.dart';
 
 class DashboardScreen extends ConsumerWidget {
-  
   const DashboardScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    
     final userDetails = ref.watch(userDetailsProvider);
 
     return RefreshIndicator(
@@ -33,11 +31,11 @@ class DashboardScreen extends ConsumerWidget {
             ),
             data: (details) => Column(
               children: [
-                
                 ProfileCard(details: details),
                 const SizedBox(height: 12),
                 ProgressCard(details: details),
                 const SizedBox(height: 12),
+
                 // GoToCard(
                 //   items: [
                 //     GoToItem(
@@ -62,15 +60,13 @@ class DashboardScreen extends ConsumerWidget {
                 //     ),
                 //   ],
                 // ),
-            
-             ],
+              ],
             ),
           ),
         ],
       ),
     );
   }
-
 }
 
 class _ErrorCard extends StatelessWidget {
@@ -86,7 +82,11 @@ class _ErrorCard extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
-            Text(message, style: AppTextStyles.secondary, textAlign: TextAlign.center),
+            Text(
+              message,
+              style: AppTextStyles.secondary,
+              textAlign: TextAlign.center,
+            ),
             const SizedBox(height: 8),
             TextButton(onPressed: onRetry, child: const Text('Try again')),
           ],

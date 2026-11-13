@@ -4,14 +4,12 @@ import 'package:jivodsr/core/theme/app_text_styles.dart';
 import 'package:jivodsr/features/dashboard/domain/entities/user_details.dart';
 
 class ProgressCard extends StatelessWidget {
-  
   const ProgressCard({super.key, required this.details});
 
   final UserDetails details;
-  
+
   @override
   Widget build(BuildContext context) {
-
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(16),
@@ -20,7 +18,11 @@ class ProgressCard extends StatelessWidget {
           children: [
             Row(
               children: [
-                const Icon(Icons.trending_up, size: 20, color: AppColors.violet),
+                const Icon(
+                  Icons.trending_up,
+                  size: 20,
+                  color: AppColors.violet,
+                ),
                 const SizedBox(width: 8),
                 Text("Today's progress", style: AppTextStyles.cardTitle),
               ],
@@ -42,7 +44,7 @@ class ProgressCard extends StatelessWidget {
                         Expanded(
                           child: Text('Target', style: AppTextStyles.secondary),
                         ),
-                       // Text(details.target.inr, style: AppTextStyles.bigNumber),
+                        // Text(details.target.inr, style: AppTextStyles.bigNumber),
                       ],
                     ),
                   ),
@@ -68,5 +70,4 @@ class ProgressCard extends StatelessWidget {
       ),
     );
   }
-
 }

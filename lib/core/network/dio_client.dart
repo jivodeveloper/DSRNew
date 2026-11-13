@@ -8,10 +8,8 @@ import 'package:jivodsr/core/network/interceptors/auth_interceptors.dart';
 import 'package:jivodsr/core/providers/core_providers.dart';
 
 final dioProvider = Provider<Dio>((ref) {
-
   final dio = Dio(
     BaseOptions(
-
       baseUrl: Env.baseUrl,
       connectTimeout: const Duration(seconds: 15),
       receiveTimeout: const Duration(seconds: 15),
@@ -20,7 +18,6 @@ final dioProvider = Provider<Dio>((ref) {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
       },
-
     ),
   );
 
@@ -29,7 +26,6 @@ final dioProvider = Provider<Dio>((ref) {
     if (kDebugMode) LoggingInterceptors(),
     ErrorInterceptor(),
   ]);
-  
-  return dio;
 
+  return dio;
 });

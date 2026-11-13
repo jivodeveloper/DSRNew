@@ -2,20 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:jivodsr/core/theme/app_colors.dart';
 
 class TodayCard extends StatelessWidget {
-
   const TodayCard({super.key});
 
   @override
   Widget build(BuildContext context) {
-
     return Card(
       margin: EdgeInsets.zero,
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
-          
           children: [
-
             Row(
               children: [
                 Expanded(
@@ -43,14 +39,12 @@ class TodayCard extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.symmetric(vertical: 10.0),
                         child: Column(
-                                           
-  
                           children: [
                             Text(
                               'Punch In',
                               style: Theme.of(context).textTheme.bodyMedium,
                             ),
-                        
+
                             Text(
                               '9:41 AM',
                               style: Theme.of(context).textTheme.bodyMedium,
@@ -72,7 +66,7 @@ class TodayCard extends StatelessWidget {
                               'Punch Out',
                               style: Theme.of(context).textTheme.bodyMedium,
                             ),
-                        
+
                             Text(
                               '9:41 AM',
                               style: Theme.of(context).textTheme.bodyMedium,
@@ -91,31 +85,26 @@ class TodayCard extends StatelessWidget {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-
                             Text(
                               'Worked',
                               style: Theme.of(context).textTheme.bodyMedium,
                             ),
-                        
+
                             Text(
                               '1h 31m',
                               style: Theme.of(context).textTheme.bodyMedium,
                             ),
-
                           ],
                         ),
                       ),
                     ),
-
                   ],
                 ),
               ),
             ),
-
           ],
         ),
       ),
     );
-    
   }
 }

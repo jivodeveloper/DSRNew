@@ -1,7 +1,6 @@
 /// Extension to format a DateTime object into a specific string format
-extension DateTimeX on DateTime{
-
-   static const _months = [
+extension DateTimeX on DateTime {
+  static const _months = [
     'January',
     'February',
     'March',
@@ -13,7 +12,7 @@ extension DateTimeX on DateTime{
     'September',
     'October',
     'November',
-    'December'
+    'December',
   ];
 
   static const _weekdays = [
@@ -23,10 +22,11 @@ extension DateTimeX on DateTime{
     'Thursday',
     'Friday',
     'Saturday',
-    'Sunday'
+    'Sunday',
   ];
 
-  String get dMMMy => '${day.toString().padLeft(2, '0')}-${_months[month - 1]}-$year';
+  String get dMMMy =>
+      '${day.toString().padLeft(2, '0')}-${_months[month - 1]}-$year';
 
   String get monthShort => _months[month - 1].substring(0, 3);
 
@@ -37,18 +37,14 @@ extension DateTimeX on DateTime{
   String get monthName => _months[month - 1];
 
   String get hhmm =>
-      '${hour.toString().padLeft(2, '0')}:${minute.toString().padLeft(2, '0')}';  
-  
+      '${hour.toString().padLeft(2, '0')}:${minute.toString().padLeft(2, '0')}';
 }
 
-extension DurationX on Duration{
-
+extension DurationX on Duration {
   String get hm => '${inHours}h ${inMinutes.remainder(60)}m';
-  
 }
 
 extension RupeeX on num {
-  
   String get inr {
     final digits = round().toString();
     if (digits.length <= 3) return '₹$digits';
@@ -66,5 +62,3 @@ extension RupeeX on num {
     return '₹${groups.join(',')},$last3';
   }
 }
-
-

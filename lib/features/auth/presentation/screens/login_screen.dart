@@ -304,7 +304,6 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                       color: colors.onSurfaceVariant,
                     ),
                   ),
-                  
                 ],
               ),
             ),

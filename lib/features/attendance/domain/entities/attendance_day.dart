@@ -1,7 +1,6 @@
 import 'package:jivodsr/features/attendance/domain/entities/attendance_status.dart';
 
 class AttendanceDay {
-
   const AttendanceDay({
     required this.date,
     this.status,
@@ -9,9 +8,9 @@ class AttendanceDay {
     this.punchOut,
     this.remark,
   });
-  
+
   final DateTime date;
-  final AttendanceStatus? status; 
+  final AttendanceStatus? status;
   final DateTime? punchIn;
   final DateTime? punchOut;
   final String? remark;
@@ -24,5 +23,4 @@ class AttendanceDay {
     if (start == null) return null;
     return (punchOut ?? DateTime.now()).difference(start);
   }
-
 }

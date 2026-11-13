@@ -11,11 +11,12 @@ final authRemoteDatasourceProvider = Provider<AuthRemoteDatasource>((ref) {
 });
 
 final authRepositoryProvider = Provider<AuthRepository>((ref) {
-  return AuthRepositoryImpl(ref.watch(authRemoteDatasourceProvider),
-  ref.watch(secureProviders));
+  return AuthRepositoryImpl(
+    ref.watch(authRemoteDatasourceProvider),
+    ref.watch(secureProviders),
+  );
 });
 
 final authControllerProvider = NotifierProvider<AuthController, AuthStatus>(
   AuthController.new,
 );
-

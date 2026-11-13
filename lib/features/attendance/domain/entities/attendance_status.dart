@@ -1,5 +1,4 @@
 enum AttendanceStatus {
-  
   present('P', 'Present'),
   halfDay('HD', 'Half day'),
   absent('A', 'Absent'),
@@ -11,7 +10,5 @@ enum AttendanceStatus {
 
   const AttendanceStatus(this.code, this.label);
 
-  bool get isWorkingDay => this ==present || this == halfDay || this == absent;
-
+  bool get isWorkingDay => this == present || this == halfDay || this == absent;
 }
-

@@ -5,7 +5,6 @@ import 'package:jivodsr/core/utils/extensions.dart';
 import 'package:jivodsr/features/dashboard/domain/entities/user_details.dart';
 
 class ProfileCard extends StatelessWidget {
-
   const ProfileCard({super.key, required this.details});
   final UserDetails details;
 
@@ -21,7 +20,6 @@ class ProfileCard extends StatelessWidget {
             const SizedBox(height: 6),
             Row(
               children: [
-                
                 Container(
                   width: 9,
                   height: 9,
@@ -41,8 +39,9 @@ class ProfileCard extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                   ),
                 ),
-                
+
                 const SizedBox(width: 8),
+
                 // details.isPresent
                 //     ? const StatusPill(
                 //         label: 'Present',
@@ -53,7 +52,6 @@ class ProfileCard extends StatelessWidget {
                 //         icon: Icons.schedule,
                 //         tone: PillTone.warn,
                 //       ),
-
               ],
             ),
             const SizedBox(height: 6),
@@ -79,5 +77,4 @@ class ProfileCard extends StatelessWidget {
       ),
     );
   }
-
 }

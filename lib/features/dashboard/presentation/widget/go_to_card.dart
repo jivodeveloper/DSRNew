@@ -75,7 +75,11 @@ class _GoToTile extends StatelessWidget {
                   ],
                 ),
               ),
-              const Icon(Icons.arrow_forward, size: 18, color: AppColors.textSecondary),
+              const Icon(
+                Icons.arrow_forward,
+                size: 18,
+                color: AppColors.textSecondary,
+              ),
             ],
           ),
         ),

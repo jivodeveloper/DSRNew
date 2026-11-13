@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:jivodsr/core/router/routes.dart';
 
 class AppMenuItem {
-
   const AppMenuItem({
     required this.module,
     required this.label,
@@ -14,7 +13,7 @@ class AppMenuItem {
   final String label;
   final IconData icon;
   final String? route;
-  
+
   factory AppMenuItem.forModule(String module) {
     return _screens[module] ??
         AppMenuItem(
@@ -44,5 +43,4 @@ class AppMenuItem {
       .where((word) => word.isNotEmpty)
       .map((word) => '${word[0].toUpperCase()}${word.substring(1)}')
       .join(' ');
-
 }

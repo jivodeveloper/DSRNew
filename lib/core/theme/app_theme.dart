@@ -27,7 +27,6 @@ class AppTheme {
       //   bodyColor: AppColors.textPrimary,
       //   displayColor: AppColors.textPrimary,
       // ),
-
       appBarTheme: AppBarThemeData(
         backgroundColor: AppColors.card,
         foregroundColor: AppColors.textPrimary,
@@ -81,7 +80,6 @@ class AppTheme {
           );
         }),
       ),
-
     );
   }
 
@@ -93,5 +91,4 @@ class AppTheme {
     ),
     scaffoldBackgroundColor: AppColors.surfaceDark,
   );
-
 }

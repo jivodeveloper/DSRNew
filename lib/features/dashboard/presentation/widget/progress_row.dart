@@ -19,7 +19,6 @@ class ProgressRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
     final isBehind = progress < _behindBelow;
     final percent = (progress * 100).round();
 

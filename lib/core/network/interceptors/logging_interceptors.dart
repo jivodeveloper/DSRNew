@@ -2,7 +2,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 
 class LoggingInterceptors extends LogInterceptor {
-
   LoggingInterceptors()
     : super(
         requestBody: true,
@@ -10,9 +9,8 @@ class LoggingInterceptors extends LogInterceptor {
         logPrint: (object) => debugPrint(object.toString()),
       );
 
-  bool _isLogin(RequestOptions options) =>
-      options.path == '/auth/login/';
-  
+  bool _isLogin(RequestOptions options) => options.path == '/auth/login/';
+
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     if (_isLogin(options)) {

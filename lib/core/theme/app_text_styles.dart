@@ -3,7 +3,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:jivodsr/core/theme/app_colors.dart';
 
 class AppTextStyles {
-
   const AppTextStyles._();
 
   // ---- Headings (Playfair Display) ----
@@ -42,14 +41,9 @@ class AppTextStyles {
     color: AppColors.textPrimary,
   );
 
-  static TextStyle get caption => GoogleFonts.dmSans(
-    fontSize: 12,
-    color: AppColors.textMuted,
-  );
+  static TextStyle get caption =>
+      GoogleFonts.dmSans(fontSize: 12, color: AppColors.textMuted);
 
-  static TextStyle get secondary => GoogleFonts.dmSans(
-    fontSize: 13,
-    color: AppColors.textSecondary,
-  );
-  
+  static TextStyle get secondary =>
+      GoogleFonts.dmSans(fontSize: 13, color: AppColors.textSecondary);
 }

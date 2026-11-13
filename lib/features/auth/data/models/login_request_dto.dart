@@ -1,9 +1,5 @@
-class LoginResponseDto{
-
-  const LoginResponseDto({
-    required this.access,
-    required this.refresh,
-  });
+class LoginResponseDto {
+  const LoginResponseDto({required this.access, required this.refresh});
 
   final String access;
   final String refresh;
@@ -13,9 +9,7 @@ class LoginResponseDto{
       access: json['access'] as String? ?? '',
       refresh: json['refresh'] as String? ?? '',
     );
-    
   }
-  
-  bool get isValid => access.isNotEmpty;
 
+  bool get isValid => access.isNotEmpty;
 }

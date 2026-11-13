@@ -3,29 +3,23 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jivodsr/features/attendance/presentation/providers/attendance_providers.dart';
 import 'package:jivodsr/features/attendance/presentation/widgets/today_card.dart';
 
-class AttendanceScreen extends ConsumerWidget{
-
+class AttendanceScreen extends ConsumerWidget {
   const AttendanceScreen({super.key});
 
   @override
-  Widget build(BuildContext context,WidgetRef ref) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final monthAsync = ref.watch(attendanceMonthProvider);
 
     return monthAsync.when(
-      data: (month){
+      data: (month) {
         final today = month.dayFor(DateTime.now());
         return ListView(
           padding: EdgeInsets.all(14),
-          children: [
-
-            if(today != null) 
-              TodayCard(),
-            
-          ],
+          children: [if (today != null) TodayCard()],
         );
-      }, error: (error,_) => Center(
-        child: Text('Error: $error'),
-      ),
-      loading: () =>const Center(child: CircularProgressIndicator(),));
+      },
+      error: (error, _) => Center(child: Text('Error: $error')),
+      loading: () => const Center(child: CircularProgressIndicator()),
+    );
   }
 }

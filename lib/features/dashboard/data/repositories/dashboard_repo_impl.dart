@@ -3,27 +3,23 @@ import 'package:jivodsr/features/dashboard/domain/entities/user_details.dart';
 import 'package:jivodsr/features/dashboard/domain/repositories/dashboard_repository.dart';
 
 class DashboardRepoImpl implements DashboardRepository {
-
   Map<String, dynamic>? _userDetails;
 
   Map<String, dynamic>? get userDetails => _userDetails;
 
-  DashboardRepoImpl(
-    this._remoteDataSource,
-  );  
+  DashboardRepoImpl(this._remoteDataSource);
 
   final DashboardRemoteDataSource _remoteDataSource;
 
   @override
-  Future<UserDetails> getDetailsById()  async{
-      final dto = await _remoteDataSource.getUserDetails();
-      return dto.toEntity();
+  Future<UserDetails> getDetailsById() async {
+    final dto = await _remoteDataSource.getUserDetails();
+    return dto.toEntity();
   }
-  
+
   // @override
   // Future<UserDetails> getUserDetails({required int userId}) async {
   //   final dto = await _remoteDataSource.getUserDetails(userId: userId);
   //   return dto.toEntity();
   // }
-  
 }

@@ -2,7 +2,6 @@ import 'package:dio/dio.dart';
 import 'package:jivodsr/core/storage/secure_storage.dart';
 
 class AuthInterceptors extends Interceptor {
-  
   AuthInterceptors(this._storage);
 
   final SecureStorageService _storage;
@@ -12,14 +11,13 @@ class AuthInterceptors extends Interceptor {
     RequestOptions options,
     RequestInterceptorHandler handler,
   ) async {
-    
     try {
       final token = await _storage.getAccessToken();
 
       if (token != null && token.isNotEmpty) {
         options.headers['Authorization'] = 'Bearer $token';
       }
-      
+
       handler.next(options);
     } catch (error) {
       handler.reject(

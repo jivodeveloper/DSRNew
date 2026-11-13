@@ -12,7 +12,6 @@ import 'package:jivodsr/core/router/routes.dart';
 import 'package:jivodsr/core/router/shell/main_shell.dart';
 
 final routerProvider = Provider<GoRouter>((ref) {
-  
   final refreshNotifier = RouterRefreshNotifier();
   ref.onDispose(() {
     refreshNotifier.dispose();
@@ -26,7 +25,6 @@ final routerProvider = Provider<GoRouter>((ref) {
     initialLocation: Routes.splash,
     refreshListenable: refreshNotifier,
     redirect: (context, state) {
-
       final authStatus = ref.read(authControllerProvider);
       final currentLocation = state.matchedLocation;
 
@@ -48,10 +46,8 @@ final routerProvider = Provider<GoRouter>((ref) {
       }
 
       return null;
-
-    },      
-    routes: [ 
-
+    },
+    routes: [
       GoRoute(
         path: Routes.splash,
         builder: (context, state) => const SplashScreen(),
@@ -62,11 +58,12 @@ final routerProvider = Provider<GoRouter>((ref) {
       ),
       StatefulShellRoute.indexedStack(
         builder: (context, state, navigationshell) {
-          return MainShell(navigationShell: navigationshell,
-                      location: state.uri.path);
+          return MainShell(
+            navigationShell: navigationshell,
+            location: state.uri.path,
+          );
         },
         branches: [
-
           StatefulShellBranch(
             routes: [
               GoRoute(
@@ -99,11 +96,8 @@ final routerProvider = Provider<GoRouter>((ref) {
               ),
             ],
           ),
-          
         ],
       ),
-
     ],
   );
-
 });

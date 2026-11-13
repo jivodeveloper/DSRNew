@@ -6,24 +6,22 @@ import 'package:jivodsr/features/attendance/domain/entities/attendance_status.da
 import 'package:jivodsr/features/auth/presentation/providers/auth_controller.dart';
 import 'package:jivodsr/features/auth/presentation/providers/auth_providers.dart';
 
-final attendanceMonthProvider = FutureProvider.autoDispose<AttendanceMonth>((ref) async {
-
+final attendanceMonthProvider = FutureProvider.autoDispose<AttendanceMonth>((
+  ref,
+) async {
   final authStatus = ref.watch(authControllerProvider);
   if (authStatus != AuthStatus.authenticated) {
     throw const UnauthorizedException();
   }
 
-  await Future.delayed(const Duration(milliseconds: 600)); 
+  await Future.delayed(const Duration(milliseconds: 600));
   return _fakeMonth(DateTime.now());
-
 });
 
 AttendanceMonth _fakeMonth(DateTime now) {
-
-  final days = <AttendanceDay>[]; 
+  final days = <AttendanceDay>[];
 
   for (var d = 1; d <= now.day; d++) {
-
     final date = DateTime(now.year, now.month, d);
 
     final AttendanceStatus status;
@@ -36,8 +34,9 @@ AttendanceMonth _fakeMonth(DateTime now) {
     } else {
       status = AttendanceStatus.present;
     }
-    
-    final worked = status == AttendanceStatus.present ||
+
+    final worked =
+        status == AttendanceStatus.present ||
         status == AttendanceStatus.halfDay;
 
     final isToday = d == now.day;
@@ -53,7 +52,6 @@ AttendanceMonth _fakeMonth(DateTime now) {
             : null,
       ),
     );
-
   }
 
   return AttendanceMonth(year: now.year, month: now.month, days: days);

@@ -4,7 +4,6 @@ import 'package:jivodsr/core/widgets/status_pill.dart';
 import 'package:jivodsr/features/attendance/domain/entities/attendance_status.dart';
 
 extension AttendanceStatusStyle on AttendanceStatus {
-
   Color get fg => switch (this) {
     AttendanceStatus.present => AppColors.presentFg,
     AttendanceStatus.halfDay => AppColors.halfDayFg,
@@ -20,7 +19,7 @@ extension AttendanceStatusStyle on AttendanceStatus {
     AttendanceStatus.weekOff => AppColors.weekOffBg,
     AttendanceStatus.holiday => AppColors.holidayBg,
   };
-  
+
   Color get border => switch (this) {
     AttendanceStatus.present => AppColors.presentBorder,
     AttendanceStatus.halfDay => AppColors.halfDayBorder,

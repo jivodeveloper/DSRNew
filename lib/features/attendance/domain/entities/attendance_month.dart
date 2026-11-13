@@ -24,14 +24,15 @@ class AttendanceMonth {
   int get workingDays => presentCount + halfDayCount + absentCount;
 
   /// 0.0 – 1.0. A half day counts as ½.
-  double get percentage => workingDays == 0
-      ? 0
-      : (presentCount + halfDayCount * 0.5) / workingDays;
+  double get percentage =>
+      workingDays == 0 ? 0 : (presentCount + halfDayCount * 0.5) / workingDays;
 
   AttendanceDay? dayFor(DateTime date) => days
-      .where((d) =>
-          d.date.year == date.year &&
-          d.date.month == date.month &&
-          d.date.day == date.day)
+      .where(
+        (d) =>
+            d.date.year == date.year &&
+            d.date.month == date.month &&
+            d.date.day == date.day,
+      )
       .firstOrNull;
 }

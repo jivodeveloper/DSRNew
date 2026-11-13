@@ -6,7 +6,9 @@ import 'package:jivodsr/features/dashboard/data/repositories/dashboard_repo_impl
 import 'package:jivodsr/features/dashboard/domain/entities/user_details.dart';
 import 'package:jivodsr/features/dashboard/domain/repositories/dashboard_repository.dart';
 
-final dashboardRemoteDataSourceProvider = Provider<DashboardRemoteDataSource>((ref) {
+final dashboardRemoteDataSourceProvider = Provider<DashboardRemoteDataSource>((
+  ref,
+) {
   return DashboardRemoteDataSource(ref.watch(dioProvider));
 });
 
@@ -37,11 +39,8 @@ final dashboardRepositoryProvider = Provider<DashboardRepository>((ref) {
 //   return ref.watch(dashboardRepositoryProvider).getDetailsById();
 // });
 
-
 final userDetailsProvider = FutureProvider<UserDetails>((ref) async {
-
   ref.watch(authControllerProvider);
 
   return ref.watch(dashboardRepositoryProvider).getDetailsById();
-
 });
