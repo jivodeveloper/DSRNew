@@ -1,8 +1,3 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
-import 'package:jivodsr/core/router/router_refresh.dart';
-import 'package:jivodsr/core/router/routes.dart';
-import 'package:jivodsr/core/router/shell/main_shell.dart';
 import 'package:jivodsr/features/attendance/presentation/screens/attendance.dart';
 import 'package:jivodsr/features/auth/presentation/providers/auth_controller.dart';
 import 'package:jivodsr/features/auth/presentation/providers/auth_providers.dart';
@@ -10,9 +5,14 @@ import 'package:jivodsr/features/auth/presentation/screens/login_screen.dart';
 import 'package:jivodsr/features/auth/presentation/screens/splash_screen.dart';
 import 'package:jivodsr/features/dashboard/presentation/screens/dashboard.dart';
 import 'package:jivodsr/features/shops/presentation/screens/shops.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import 'package:jivodsr/core/router/router_refresh.dart';
+import 'package:jivodsr/core/router/routes.dart';
+import 'package:jivodsr/core/router/shell/main_shell.dart';
 
 final routerProvider = Provider<GoRouter>((ref) {
-
+  
   final refreshNotifier = RouterRefreshNotifier();
   ref.onDispose(() {
     refreshNotifier.dispose();
@@ -49,8 +49,8 @@ final routerProvider = Provider<GoRouter>((ref) {
 
       return null;
 
-    },  
-    routes: [
+    },      
+    routes: [ 
 
       GoRoute(
         path: Routes.splash,
@@ -62,7 +62,8 @@ final routerProvider = Provider<GoRouter>((ref) {
       ),
       StatefulShellRoute.indexedStack(
         builder: (context, state, navigationshell) {
-          return MainShell(navigationShell: navigationshell);
+          return MainShell(navigationShell: navigationshell,
+                      location: state.uri.path);
         },
         branches: [
 
@@ -104,4 +105,5 @@ final routerProvider = Provider<GoRouter>((ref) {
 
     ],
   );
+
 });

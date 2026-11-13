@@ -5,9 +5,11 @@ import 'package:jivodsr/features/auth/presentation/providers/auth_providers.dart
 
 class MainShell extends ConsumerWidget {
 
-  const MainShell({required this.navigationShell, super.key});
+  const MainShell({required this.navigationShell,required this.location,
+   super.key});
 
   final StatefulNavigationShell navigationShell;
+  final String location;
   
   static const _titles = ['Dashboard', 'Visits', 'Orders'];
 
@@ -18,10 +20,11 @@ class MainShell extends ConsumerWidget {
     );
   }
 
-  @override
+  @override 
   Widget build(BuildContext context, WidgetRef ref) {
-    final currentIndex = navigationShell.currentIndex;
 
+    final currentIndex = navigationShell.currentIndex;
+    
     return Scaffold(
       appBar: AppBar(title: Text(_titles[currentIndex])),
 
@@ -32,6 +35,7 @@ class MainShell extends ConsumerWidget {
               const DrawerHeader(
                 child: Row(
                   children: [
+
                     CircleAvatar(
                       radius: 28,
                       child: Icon(Icons.person_outline, size: 30),
@@ -48,6 +52,7 @@ class MainShell extends ConsumerWidget {
                         ),
                       ),
                     ),
+
                   ],
                 ),
               ),
@@ -84,7 +89,6 @@ class MainShell extends ConsumerWidget {
 
               const Divider(),
 
-              // More DSR drawer modules will be added here.
               const Spacer(),
 
               const Divider(),
@@ -103,6 +107,7 @@ class MainShell extends ConsumerWidget {
                   ref.read(authControllerProvider.notifier).logout();
                 },
               ),
+
             ],
           ),
         ),
@@ -114,6 +119,7 @@ class MainShell extends ConsumerWidget {
         selectedIndex: currentIndex,
         onDestinationSelected: _changeTab,
         destinations: const [
+
           NavigationDestination(
             icon: Icon(Icons.dashboard_outlined),
             selectedIcon: Icon(Icons.dashboard),
@@ -131,9 +137,12 @@ class MainShell extends ConsumerWidget {
             selectedIcon: Icon(Icons.receipt_long),
             label: 'Orders',
           ),
+
         ],
       ),
+
     );
+      
   }
 
 }
