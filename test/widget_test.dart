@@ -4,9 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:jivodsr/app.dart';
 
 void main() {
-
   testWidgets('shows login screen when there is no session', (tester) async {
-    
     FlutterSecureStorage.setMockInitialValues({});
     await tester.pumpWidget(const ProviderScope(child: App()));
     await tester.pumpAndSettle();
@@ -15,6 +13,4 @@ void main() {
     expect(find.text('Password'), findsOneWidget);
     expect(find.text('Sign in'), findsOneWidget);
   });
-  
 }
-            
