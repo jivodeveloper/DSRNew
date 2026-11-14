@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jivodsr/core/theme/app_colors.dart';
 
-/// Grey switch with 2+ options, e.g. "Today | This month".
 class SegmentedSwitch<T> extends StatelessWidget {
   const SegmentedSwitch({
     super.key,
