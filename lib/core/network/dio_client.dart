@@ -4,6 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jivodsr/core/config/env.dart';
 import 'package:jivodsr/core/network/interceptors/error_interceptor.dart';
 import 'package:jivodsr/core/network/interceptors/logging_interceptors.dart';
+import 'package:jivodsr/core/network/interceptors/auth_interceptors.dart';
+import 'package:jivodsr/core/providers/core_providers.dart';
 
 final dioProvider = Provider<Dio>((ref) {
   final dio = Dio(
@@ -20,6 +22,7 @@ final dioProvider = Provider<Dio>((ref) {
   );
 
   dio.interceptors.addAll([
+    AuthInterceptors(ref.watch(secureProviders)),
     if (kDebugMode) LoggingInterceptors(),
     ErrorInterceptor(),
   ]);

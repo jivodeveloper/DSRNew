@@ -15,10 +15,13 @@ class AuthController extends Notifier<AuthStatus> {
     state = hasSession ? AuthStatus.authenticated : AuthStatus.unauthenticated;
   }
 
-  Future<void> login({required String email, required String password}) async {
+  Future<void> login({
+    required String username,
+    required String password,
+  }) async {
     await ref
         .read(authRepositoryProvider)
-        .login(email: email, password: password);
+        .login(username: username, password: password);
     state = AuthStatus.authenticated;
   }
 

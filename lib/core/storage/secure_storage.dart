@@ -29,7 +29,6 @@ class SecureStorageService {
 
   Future<bool> hasAccessToken() async {
     final accessToken = await getAccessToken();
-
     return accessToken != null && accessToken.isNotEmpty;
   }
 

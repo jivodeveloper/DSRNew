@@ -4,9 +4,14 @@ import 'package:go_router/go_router.dart';
 import 'package:jivodsr/features/auth/presentation/providers/auth_providers.dart';
 
 class MainShell extends ConsumerWidget {
-  const MainShell({required this.navigationShell, super.key});
+  const MainShell({
+    required this.navigationShell,
+    required this.location,
+    super.key,
+  });
 
   final StatefulNavigationShell navigationShell;
+  final String location;
 
   static const _titles = ['Dashboard', 'Visits', 'Orders'];
 
@@ -83,7 +88,6 @@ class MainShell extends ConsumerWidget {
 
               const Divider(),
 
-              // More DSR drawer modules will be added here.
               const Spacer(),
 
               const Divider(),
