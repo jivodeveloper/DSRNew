@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:jivodsr/core/theme/app_colors.dart';
 
 class SegmentedSwitch<T> extends StatelessWidget {
+  
   const SegmentedSwitch({
     super.key,
     required this.options,
@@ -10,7 +11,6 @@ class SegmentedSwitch<T> extends StatelessWidget {
     required this.onChanged,
   });
 
-  /// Value → label, in the order they appear.
   final Map<T, String> options;
   final T selected;
   final ValueChanged<T> onChanged;
