@@ -3,7 +3,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:jivodsr/core/theme/app_colors.dart';
 
 class SegmentedSwitch<T> extends StatelessWidget {
-  
   const SegmentedSwitch({
     super.key,
     required this.options,
@@ -37,9 +36,11 @@ class SegmentedSwitch<T> extends StatelessWidget {
       ),
     );
   }
+
 }
 
 class _Segment extends StatelessWidget {
+ 
   const _Segment({
     required this.label,
     required this.isSelected,
@@ -78,6 +79,7 @@ class _Segment extends StatelessWidget {
                   ]
                 : null,
           ),
+       
           child: Text(
             label,
             style: GoogleFonts.dmSans(
@@ -88,6 +90,7 @@ class _Segment extends StatelessWidget {
                   : AppColors.textSecondary,
             ),
           ),
+
         ),
       ),
     );
