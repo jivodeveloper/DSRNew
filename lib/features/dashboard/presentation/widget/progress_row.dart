@@ -8,19 +8,21 @@ class ProgressRow extends StatelessWidget {
     super.key,
     required this.title,
     required this.subtitle,
-    required this.progress,
+    this.progress,
   });
 
   final String title;
   final String subtitle;
-  final double progress; // 0.0 – 1.0
+
+  /// 0.0 – 1.0. null = no target, so no bar and no pill.
+  final double? progress;
 
   static const double _behindBelow = 0.25;
 
   @override
   Widget build(BuildContext context) {
-    final isBehind = progress < _behindBelow;
-    final percent = (progress * 100).round();
+    final value = progress;
+    final isBehind = value != null && value < _behindBelow;
 
     return Padding(
       padding: const EdgeInsets.all(12),
@@ -39,25 +41,28 @@ class ProgressRow extends StatelessWidget {
                   ],
                 ),
               ),
-              isBehind
-                  ? const StatusPill(
-                      label: 'Behind',
-                      icon: Icons.schedule,
-                      tone: PillTone.warn,
-                    )
-                  : StatusPill(
-                      label: '$percent%',
-                      icon: Icons.check_circle_outline,
-                    ),
+              if (value != null)
+                isBehind
+                    ? const StatusPill(
+                        label: 'Behind',
+                        icon: Icons.schedule,
+                        tone: PillTone.warn,
+                      )
+                    : StatusPill(
+                        label: '${(value * 100).round()}%',
+                        icon: Icons.check_circle_outline,
+                      ),
             ],
           ),
-          const SizedBox(height: 8),
-          LinearProgressIndicator(
-            value: progress,
-            minHeight: 6,
-            borderRadius: BorderRadius.circular(3),
-            color: isBehind ? AppColors.barLow : AppColors.barFill,
-          ),
+          if (value != null) ...[
+            const SizedBox(height: 8),
+            LinearProgressIndicator(
+              value: value,
+              minHeight: 6,
+              borderRadius: BorderRadius.circular(3),
+              color: isBehind ? AppColors.barLow : AppColors.barFill,
+            ),
+          ],
         ],
       ),
     );

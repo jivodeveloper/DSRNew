@@ -2,26 +2,40 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jivodsr/core/error/app_exception.dart';
 import 'package:jivodsr/core/theme/app_text_styles.dart';
+import 'package:jivodsr/core/widgets/skeleton.dart';
 import 'package:jivodsr/features/dashboard/presentation/providers/dashboard_provider.dart';
 import 'package:jivodsr/features/dashboard/presentation/widget/profile_card.dart';
 import 'package:jivodsr/features/dashboard/presentation/widget/progress_card.dart';
+import 'package:jivodsr/features/attendance/presentation/providers/attendance_providers.dart';
 
 class DashboardScreen extends ConsumerWidget {
   const DashboardScreen({super.key});
+
+  /// Pull-to-refresh: reload every card on the dashboard.
+  Future<void> _refresh(WidgetRef ref) {
+    ref.invalidate(dashboardProgressProvider); // both Today and This month
+    ref.invalidate(attendanceMonthProvider); // the Present pill
+    return ref.refresh(userDetailsProvider.future);
+  }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final userDetails = ref.watch(userDetailsProvider);
 
     return RefreshIndicator(
-      onRefresh: () => ref.refresh(userDetailsProvider.future),
+      onRefresh: () => _refresh(ref),
       child: ListView(
         padding: const EdgeInsets.all(14),
         children: [
           userDetails.when(
-            loading: () => const Padding(
-              padding: EdgeInsets.only(top: 80),
-              child: Center(child: CircularProgressIndicator()),
+            loading: () => const Pulse(
+              child: Column(
+                children: [
+                  SkeletonBox(height: 280), // profile card
+                  SizedBox(height: 12),
+                  SkeletonBox(height: 280), // progress card
+                ],
+              ),
             ),
             error: (error, _) => _ErrorCard(
               message: error is AppException
@@ -33,33 +47,8 @@ class DashboardScreen extends ConsumerWidget {
               children: [
                 ProfileCard(details: details),
                 const SizedBox(height: 12),
-                ProgressCard(details: details),
+                const ProgressCard(),
                 const SizedBox(height: 12),
-
-                // GoToCard(
-                //   items: [
-                //     GoToItem(
-                //       icon: Icons.fingerprint,
-                //       title: 'Attendance',
-                //       subtitle: 'Mark in / out',
-                //       onTap: () => context.go(Routes.attendance),
-                //     ),
-                //     GoToItem(
-                //       icon: Icons.add,
-                //       title: 'New order',
-                //       subtitle: 'Orders',
-                //       onTap: () => ScaffoldMessenger.of(context).showSnackBar(
-                //         const SnackBar(content: Text('Orders are coming soon')),
-                //       ),
-                //     ),
-                //     GoToItem(
-                //       icon: Icons.storefront_outlined,
-                //       title: 'Shops',
-                //       subtitle: '${details.assignedShops} assigned',
-                //       onTap: () => context.go(Routes.shops),
-                //     ),
-                //   ],
-                // ),
               ],
             ),
           ),
