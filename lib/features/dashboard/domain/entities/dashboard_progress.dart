@@ -34,7 +34,6 @@ class DashboardProgress {
       shopsCovered: details.shopsCovered ?? 0,
       shopsPlanned: details.assignedShops ?? 0,
       productiveCalls: details.shopsProductive ?? 0,
-      // target and productiveTarget: not in the API yet → null.
       dayOfMonth: upTo.day,
       daysInMonth: DateTime(month.year, month.month + 1, 0).day,
     );
