@@ -13,7 +13,7 @@ class MainShell extends ConsumerWidget {
   final StatefulNavigationShell navigationShell;
   final String location;
 
-  static const _titles = ['Dashboard', 'Visits', 'Orders'];
+  static const _titles = ['Dashboard', 'Shops', 'Attendance'];
 
   void _changeTab(int index) {
     navigationShell.goBranch(
@@ -67,8 +67,8 @@ class MainShell extends ConsumerWidget {
               ),
 
               ListTile(
-                leading: const Icon(Icons.location_on_outlined),
-                title: const Text('Visits'),
+                leading: const Icon(Icons.storefront_outlined),
+                title: const Text('Shops'),
                 selected: currentIndex == 1,
                 onTap: () {
                   Navigator.pop(context);
@@ -77,8 +77,8 @@ class MainShell extends ConsumerWidget {
               ),
 
               ListTile(
-                leading: const Icon(Icons.receipt_long_outlined),
-                title: const Text('Orders'),
+                leading: const Icon(Icons.event_available_outlined),
+                title: const Text('Attendance'),
                 selected: currentIndex == 2,
                 onTap: () {
                   Navigator.pop(context);
@@ -124,15 +124,15 @@ class MainShell extends ConsumerWidget {
           ),
 
           NavigationDestination(
-            icon: Icon(Icons.location_on_outlined),
-            selectedIcon: Icon(Icons.location_on),
-            label: 'Visits',
+            icon: Icon(Icons.storefront_outlined),
+            selectedIcon: Icon(Icons.storefront),
+            label: 'Shops',
           ),
 
           NavigationDestination(
-            icon: Icon(Icons.receipt_long_outlined),
-            selectedIcon: Icon(Icons.receipt_long),
-            label: 'Orders',
+            icon: Icon(Icons.event_available_outlined),
+            selectedIcon: Icon(Icons.event_available),
+            label: 'Attendance',
           ),
         ],
       ),
