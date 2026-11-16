@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:jivodsr/core/error/app_exception.dart';
+import 'package:jivodsr/core/router/routes.dart';
 import 'package:jivodsr/core/theme/app_text_styles.dart';
 import 'package:jivodsr/core/widgets/skeleton.dart';
 import 'package:jivodsr/features/dashboard/presentation/providers/dashboard_provider.dart';
+import 'package:jivodsr/features/dashboard/presentation/widget/go_to_card.dart';
 import 'package:jivodsr/features/dashboard/presentation/widget/profile_card.dart';
 import 'package:jivodsr/features/dashboard/presentation/widget/progress_card.dart';
 import 'package:jivodsr/features/attendance/presentation/providers/attendance_providers.dart';
@@ -31,9 +34,11 @@ class DashboardScreen extends ConsumerWidget {
             loading: () => const Pulse(
               child: Column(
                 children: [
-                  SkeletonBox(height: 280), // profile card
+                  SkeletonBox(height: 96), // profile card
                   SizedBox(height: 12),
                   SkeletonBox(height: 280), // progress card
+                  SizedBox(height: 12),
+                  SkeletonBox(height: 200), // go to card
                 ],
               ),
             ),
@@ -44,17 +49,46 @@ class DashboardScreen extends ConsumerWidget {
               onRetry: () => ref.invalidate(userDetailsProvider),
             ),
             data: (details) => Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 ProfileCard(details: details),
                 const SizedBox(height: 12),
                 const ProgressCard(),
                 const SizedBox(height: 12),
+                GoToCard(
+                  items: [
+                    GoToItem(
+                      icon: Icons.event_available_outlined,
+                      title: 'Attendance',
+                      subtitle: 'Punch in, punch out and monthly summary',
+                      onTap: () => context.go(Routes.attendance),
+                    ),
+                    GoToItem(
+                      icon: Icons.add_shopping_cart_outlined,
+                      title: 'New order',
+                      subtitle: 'Take an order at a shop',
+                      onTap: () => _comingSoon(context, 'New order'),
+                    ),
+                    GoToItem(
+                      icon: Icons.storefront_outlined,
+                      title: 'Shops',
+                      subtitle: 'Shops on your beats',
+                      onTap: () => context.go(Routes.shops),
+                    ),
+                  ],
+                ),
               ],
             ),
           ),
         ],
       ),
     );
+  }
+
+  void _comingSoon(BuildContext context, String feature) {
+    ScaffoldMessenger.of(context)
+      ..hideCurrentSnackBar()
+      ..showSnackBar(SnackBar(content: Text('$feature is coming soon')));
   }
 }
 
