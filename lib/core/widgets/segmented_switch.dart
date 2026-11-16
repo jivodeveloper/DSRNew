@@ -36,11 +36,9 @@ class SegmentedSwitch<T> extends StatelessWidget {
       ),
     );
   }
-
 }
 
 class _Segment extends StatelessWidget {
- 
   const _Segment({
     required this.label,
     required this.isSelected,
@@ -79,7 +77,7 @@ class _Segment extends StatelessWidget {
                   ]
                 : null,
           ),
-       
+
           child: Text(
             label,
             style: GoogleFonts.dmSans(
@@ -90,7 +88,6 @@ class _Segment extends StatelessWidget {
                   : AppColors.textSecondary,
             ),
           ),
-
         ),
       ),
     );

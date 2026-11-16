@@ -33,33 +33,8 @@ class DashboardScreen extends ConsumerWidget {
               children: [
                 ProfileCard(details: details),
                 const SizedBox(height: 12),
-                ProgressCard(details: details),
+                const ProgressCard(),
                 const SizedBox(height: 12),
-
-                // GoToCard(
-                //   items: [
-                //     GoToItem(
-                //       icon: Icons.fingerprint,
-                //       title: 'Attendance',
-                //       subtitle: 'Mark in / out',
-                //       onTap: () => context.go(Routes.attendance),
-                //     ),
-                //     GoToItem(
-                //       icon: Icons.add,
-                //       title: 'New order',
-                //       subtitle: 'Orders',
-                //       onTap: () => ScaffoldMessenger.of(context).showSnackBar(
-                //         const SnackBar(content: Text('Orders are coming soon')),
-                //       ),
-                //     ),
-                //     GoToItem(
-                //       icon: Icons.storefront_outlined,
-                //       title: 'Shops',
-                //       subtitle: '${details.assignedShops} assigned',
-                //       onTap: () => context.go(Routes.shops),
-                //     ),
-                //   ],
-                // ),
               ],
             ),
           ),
