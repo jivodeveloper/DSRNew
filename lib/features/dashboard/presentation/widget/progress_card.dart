@@ -55,6 +55,7 @@ class _ProgressCardState extends ConsumerState<ProgressCard> {
                 ),
               ],
             ),
+
             const SizedBox(height: 8),
             SegmentedSwitch<ProgressPeriod>(
               options: {

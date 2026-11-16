@@ -17,32 +17,8 @@ final dashboardRepositoryProvider = Provider<DashboardRepository>((ref) {
   return DashboardRepoImpl(ref.watch(dashboardRemoteDataSourceProvider));
 });
 
-// final userDetailsProvider = FutureProvider<UserDetails>((ref) async {
-
-//   final user = ref.watch(authRepositoryProvider).currentUser;
-
-//   if (user == null) {
-//     throw const UnauthorizedException();
-//   }
-
-//   return ref.watch(dashboardRepositoryProvider).getDetailsById(user.id);
-
-// });
-
-// final userDetailsProvider =
-//     FutureProvider.autoDispose<UserDetails>((ref) async {
-//   final status = ref.watch(authControllerProvider);
-
-//   if (status != AuthStatus.authenticated) {
-//     throw const UnauthorizedException();
-//   }
-
-//   return ref.watch(dashboardRepositoryProvider).getDetailsById();
-// });
-
 final userDetailsProvider = FutureProvider<UserDetails>((ref) async {
   ref.watch(authControllerProvider);
-
   return ref.watch(dashboardRepositoryProvider).getDetailsById();
 });
 

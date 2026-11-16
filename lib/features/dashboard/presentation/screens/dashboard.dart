@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jivodsr/core/error/app_exception.dart';
 import 'package:jivodsr/core/theme/app_text_styles.dart';
+import 'package:jivodsr/core/widgets/skeleton.dart';
 import 'package:jivodsr/features/dashboard/presentation/providers/dashboard_provider.dart';
 import 'package:jivodsr/features/dashboard/presentation/widget/profile_card.dart';
 import 'package:jivodsr/features/dashboard/presentation/widget/progress_card.dart';
@@ -19,9 +20,14 @@ class DashboardScreen extends ConsumerWidget {
         padding: const EdgeInsets.all(14),
         children: [
           userDetails.when(
-            loading: () => const Padding(
-              padding: EdgeInsets.only(top: 80),
-              child: Center(child: CircularProgressIndicator()),
+            loading: () => const Pulse(
+              child: Column(
+                children: [
+                  SkeletonBox(height: 280), // profile card
+                  SizedBox(height: 12),
+                  SkeletonBox(height: 280), // progress card
+                ],
+              ),
             ),
             error: (error, _) => _ErrorCard(
               message: error is AppException
