@@ -25,8 +25,8 @@ extension DateTimeX on DateTime {
     'Sunday',
   ];
 
-  String get dMMMy =>
-      '${day.toString().padLeft(2, '0')}-${_months[month - 1]}-$year';
+  /// e.g. "16 Nov 2026"
+  String get dMMMy => '$day $monthShort $year';
 
   String get monthShort => _months[month - 1].substring(0, 3);
 
