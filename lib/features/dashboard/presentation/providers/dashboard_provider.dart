@@ -24,29 +24,22 @@ final userDetailsProvider = FutureProvider<UserDetails>((ref) async {
 
 final dashboardProgressProvider = FutureProvider.autoDispose
     .family<DashboardProgress, ProgressPeriod>((ref, period) async {
-      await Future.delayed(const Duration(milliseconds: 400));
+      switch (period) {
+        case ProgressPeriod.month:
+          // Real data: month-to-date numbers come with /userDetails.
+          final details = await ref.watch(userDetailsProvider.future);
+          return DashboardProgress.monthFrom(details);
 
-      final now = DateTime.now();
-      final daysInMonth = DateTime(now.year, now.month + 1, 0).day;
-
-      return switch (period) {
-        ProgressPeriod.today => const DashboardProgress(
-          period: ProgressPeriod.today,
-          target: 650,
-          shopsCovered: 12,
-          shopsPlanned: 24,
-          productiveCalls: 2,
-          productiveTarget: 8,
-        ),
-        ProgressPeriod.month => DashboardProgress(
-          period: ProgressPeriod.month,
-          target: 17000,
-          shopsCovered: 102,
-          shopsPlanned: 316,
-          productiveCalls: 9,
-          productiveTarget: 200,
-          dayOfMonth: now.day,
-          daysInMonth: daysInMonth,
-        ),
-      };
+        case ProgressPeriod.today:
+          // Fake until the backend has a "today" API.
+          await Future.delayed(const Duration(milliseconds: 400));
+          return const DashboardProgress(
+            period: ProgressPeriod.today,
+            target: 650,
+            shopsCovered: 12,
+            shopsPlanned: 24,
+            productiveCalls: 2,
+            productiveTarget: 8,
+          );
+      }
     });

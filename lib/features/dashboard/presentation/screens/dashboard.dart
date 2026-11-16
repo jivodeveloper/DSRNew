@@ -6,16 +6,24 @@ import 'package:jivodsr/core/widgets/skeleton.dart';
 import 'package:jivodsr/features/dashboard/presentation/providers/dashboard_provider.dart';
 import 'package:jivodsr/features/dashboard/presentation/widget/profile_card.dart';
 import 'package:jivodsr/features/dashboard/presentation/widget/progress_card.dart';
+import 'package:jivodsr/features/attendance/presentation/providers/attendance_providers.dart';
 
 class DashboardScreen extends ConsumerWidget {
   const DashboardScreen({super.key});
+
+  /// Pull-to-refresh: reload every card on the dashboard.
+  Future<void> _refresh(WidgetRef ref) {
+    ref.invalidate(dashboardProgressProvider); // both Today and This month
+    ref.invalidate(attendanceMonthProvider); // the Present pill
+    return ref.refresh(userDetailsProvider.future);
+  }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final userDetails = ref.watch(userDetailsProvider);
 
     return RefreshIndicator(
-      onRefresh: () => ref.refresh(userDetailsProvider.future),
+      onRefresh: () => _refresh(ref),
       child: ListView(
         padding: const EdgeInsets.all(14),
         children: [

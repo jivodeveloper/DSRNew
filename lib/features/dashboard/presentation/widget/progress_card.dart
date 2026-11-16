@@ -97,6 +97,7 @@ class _ProgressRows extends StatelessWidget {
   Widget build(BuildContext context) {
     final p = progress;
     final isToday = p.period == ProgressPeriod.today;
+    final target = p.target;
     final projectedShops = p.projected(p.shopsCovered);
     final projectedCalls = p.projected(p.productiveCalls);
 
@@ -107,21 +108,24 @@ class _ProgressRows extends StatelessWidget {
       ),
       child: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.all(12),
-            child: Row(
-              children: [
-                Expanded(
-                  child: Text(
-                    isToday ? "Today's target" : 'Monthly target',
-                    style: AppTextStyles.secondary,
+          // Only when the API sends a ₹ target.
+          if (target != null) ...[
+            Padding(
+              padding: const EdgeInsets.all(12),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      isToday ? "Today's target" : 'Monthly target',
+                      style: AppTextStyles.secondary,
+                    ),
                   ),
-                ),
-                Text(p.target.inr, style: AppTextStyles.bigNumber),
-              ],
+                  Text(target.inr, style: AppTextStyles.bigNumber),
+                ],
+              ),
             ),
-          ),
-          const Divider(),
+            const Divider(),
+          ],
           ProgressRow(
             title: 'Shops covered',
             subtitle: isToday
@@ -132,8 +136,9 @@ class _ProgressRows extends StatelessWidget {
           const Divider(),
           ProgressRow(
             title: 'Productive calls',
-            subtitle:
-                '${p.productiveCalls} of ${p.productiveTarget} · ${p.productiveLeft} to go',
+            subtitle: p.productiveTarget == null
+                ? '${p.productiveCalls} so far'
+                : '${p.productiveCalls} of ${p.productiveTarget} · ${p.productiveLeft} to go',
             progress: p.productiveProgress,
           ),
           // Month only: where they'll end up at the current pace.
